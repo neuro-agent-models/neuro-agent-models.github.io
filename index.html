@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: flex-end; /* Ensure nav content is right-aligned */
+            min-height: 60px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0 2rem;
+            width: auto; /* Remove the full width constraint */
+        }
+
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .banner {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            background-color: #000;
+        }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* 30% opaque black overlay */
+            z-index: 1;
+        }
+
+        .banner img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: bottom; /* Aligns image to bottom */
+            opacity: 1; /* Changed from 0.7 since we're using overlay */
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2; /* Increased z-index to appear above the overlay */
+        }
+
+        .banner h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .schedule {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow-x: auto;
+            max-width: 1000px; /* Add max-width to constrain table size */
+            margin: 0 auto; /* Center the schedule container */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds subtle shadow */
+        }
+
+        .schedule table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0; /* Add vertical margin inside the schedule container */
+        }
+
+        .schedule th, .schedule td {
+            padding: 1rem 1.5rem; /* Increased horizontal padding */
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .schedule th {
+            background-color: #333;
+            color: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .person {
+            text-align: center;
+        }
+
+        .person img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .questions {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 1rem;
+            }
+
+            .banner h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            background: none;
+            border: none;
+            position: absolute;
+            right: 1rem;
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Center vertically */
+            height: 40px; /* Fixed height */
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 1rem;
+            }
+
+            nav ul.active {
+                display: block;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+        }
+
+        .speaker-row {
+            background-color: #f0f2f5;  /* Light grayish-blue color */
+        }
+
+        /* Ensure hover effect for better interaction */
+        .speaker-row:hover {
+            background-color: #e5e8ed;  /* Slightly darker on hover */
+        }
+
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul>
+            <li><a href="#abstract">Abstract</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#organizers">Organizers</a></li>
+        </ul>
+    </nav>
+
+    <div class="banner">
+        <img src="mt_tremblant.jpg" alt="Workshop Banner">
+        <div class="banner-content" style="color: #f5f5f5;">
+            <h1><b style="font-size: 1.5em;">COSYNE 2025 Workshop</b>
+                <br>on<br>Agent-Based Models in Neuroscience:<br>Complex Planning, Embodiment and Beyond</h1>
+            <p style="font-size: 1.5em;"><i>March 31, 2025</i></p>
+        </div>
+    </div>
+
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <p style="max-width: 90%; margin: 0 auto;">In this workshop, we bring together experimentalists and theorists to explore a nascent area in neuroscience: using agent-based models to simulate animal behavior and understand underlying neural computations. Agents are models that can sample from and interact with their environment to take actions. These models offer a powerful platform for neuroscientists to formulate and test hypotheses about how animals can perform complex, multi-step behaviors in naturalistic environments. Applications in this area have ranged from social behavior to foraging to dexterous motor control. As this approach gains traction, we face critical questions: How well can agents replicate complex animal behavior? When is embodiment crucial? To what extent do experimental data support the neural mechanisms suggested by these models?
+            <br><br>
+            To begin addressing these questions, we invite speakers with diverse perspectives on agent-based models in neuroscience. A prevailing paradigm is to train agents to solve difficult behavioral tasks commonly used in experimental neuroscience, such as foraging tasks that demand multi-step planning, decision-making, and memory. Typically trained through deep reinforcement learning, these models can explain aspects of animal behavior. The representations found in these models can also explain neural data phenomena found in animals and provide theories for the underlying neural computations 
+            <br><br>
+            Another body of work centers around embodied agents, that is, the development of "digital twins" of animals (e.g., bees, flies, rodents, worms, and others) to recapitulate animal behavior in a physics simulator. Embodiment offers unprecedented observability of the interplay between neural circuits and musculoskeletal dynamics. The ethological relevance of motor movement also enforces a naturalistic constraint on the computations developed in these models. Many of these models have been important for both uncovering sensorimotor computations in the brain and testing/generating hypotheses.
+            <br><br>
+            By bringing researchers from fields such as systems neuroscience, NeuroAI, reinforcement learning, and biomechanics, we aim to catalyze interdisciplinary conversations to explore the potential of agent models to provide insights into brain function.
+            </p>
+    </section>
+
+    <section id="schedule"></section>
+        <h2>Schedule</h2>
+        <div class="schedule">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Title</th>
+                        <th>Speaker</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>9:30 - 9:40 AM</td>
+                        <td>Introduction</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>9:40 - 10:05 AM</td>
+                        <td>Dopamine neurons encode a multidimensional probabilistic map of future reward</td>
+                        <td>Margarida Sousa, Champalimaud Foundation</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>10:05 - 10:30 AM</td>
+                        <td>Recurrent network models of planning in prefrontal cortex</td>
+                        <td>Kristopher Jensen, University College London</td>
+                    </tr>
+                    <tr>
+                        <td>10:30 - 10:45 AM</td>
+                        <td>Break</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>10:45 - 11:10 AM</td>
+                        <td>Discovering Interpretable Cognitive Models from Behavior Data</td>
+                        <td>Kevin Miller, DeepMind</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>11:10 - 11:35 AM</td>
+                        <td>Talk title: TBD</td>
+                        <td>Emily Mackevicius, Basis Research Institute</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>11:35 AM - 12:00 PM</td>
+                        <td>Active Electrosensing and Emergent Communication in Artificial Fish Collectives</td>
+                        <td>Satpreet Singh, Harvard University</td>
+                    </tr>
+                    <tr>
+                        <td>12:00 - 12:30 PM</td>
+                        <td>Morning Panel</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>3:30 - 3:55 PM</td>
+                        <td>Why NeuroAI Needs Agents</td>
+                        <td>Aran Nayebi, Carnegie Mellon University</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>3:55 - 4:20 PM</td>
+                        <td>Connectome-constrained neuromechanical models of how flies move</td>
+                        <td>Bing Brunton, University of Washington</td>
+                    </tr>
+                    <tr>
+                        <td>4:20 - 4:40 PM</td>
+                        <td>Break</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>4:40 - 5:05 PM</td>
+                        <td>Neuro-biomechanical Simulations in a Virtual Rodent</td>
+                        <td>Bence P. Ölveczky, Harvard University</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>5:05 - 5:30 PM</td>
+                        <td>μSim: A goal-driven framework for elucidating the neural control of movement through musculoskeletal modeling</td>
+                        <td>Shreya Saxena, Yale University</td>
+                    </tr>
+                    <tr>
+                        <td>5:30 - 5:45 PM</td>
+                        <td>Break</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>5:45 - 6:30 PM</td>
+                        <td>Afternoon Panel</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="speakers">
+        <h2>Speakers</h2>
+        <div class="grid">
+            <div class="person">
+                <img src="/api/placeholder/400/400" alt="Speaker 1">
+                <h3>Speaker Name</h3>
+                <p>Affiliation</p>
+            </div>
+            <div class="person">
+                <img src="/api/placeholder/400/400" alt="Speaker 2">
+                <h3>Speaker Name</h3>
+                <p>Affiliation</p>
+            </div>
+            <div class="person">
+                <img src="/api/placeholder/400/400" alt="Speaker 3">
+                <h3>Speaker Name</h3>
+                <p>Affiliation</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="organizers">
+        <h2>Organizers</h2>
+        <div class="grid">
+            <div class="person">
+                <img src="/api/placeholder/400/400" alt="Organizer 1">
+                <h3>Organizer Name</h3>
+                <p>Affiliation</p>
+            </div>
+            <div class="person">
+                <img src="/api/placeholder/400/400" alt="Organizer 2">
+                <h3>Organizer Name</h3>
+                <p>Affiliation</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="questions">
+        <h2>Submit Questions</h2>
+        <div class="questions">
+            <p>Add any additional information, requirements, or notes for workshop participants here.</p>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('nav ul');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
