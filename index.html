@@ -133,9 +133,12 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, minmax(250px, 1fr)); /* Changed from auto-fit to 3 columns */
             gap: 2rem;
             margin-top: 2rem;
+            max-width: 1200px; /* Optional: adds a max-width to ensure consistent layout */
+            margin-left: auto; /* Optional: centers the grid */
+            margin-right: auto; /* Optional: centers the grid */
         }
 
         .person {
@@ -242,7 +245,7 @@
     </nav>
 
     <div class="banner">
-        <img src="mt_tremblant.jpg" alt="Workshop Banner">
+        <img src="images/mt_tremblant_small.jpg" alt="Workshop Banner">
         <div class="banner-content" style="color: #f5f5f5;">
             <h1><b style="font-size: 1.5em;">COSYNE 2025 Workshop</b>
                 <br>on<br>Agent-Based Models in Neuroscience:<br>Complex Planning, Embodiment and Beyond</h1>
@@ -358,19 +361,49 @@
         <h2>Speakers</h2>
         <div class="grid">
             <div class="person">
-                <img src="/api/placeholder/400/400" alt="Speaker 1">
-                <h3>Speaker Name</h3>
-                <p>Affiliation</p>
+                <img src="images/margarida.jpg" alt="Speaker 1">
+                <h3>Margarida Sousa</h3>
+                <p>Champalimaud Foundation</p>
             </div>
             <div class="person">
-                <img src="/api/placeholder/400/400" alt="Speaker 2">
-                <h3>Speaker Name</h3>
-                <p>Affiliation</p>
+                <img src="images/kristopher.png" alt="Speaker 2">
+                <h3><a href="https://krisjensen.github.io/" target="_blank">Kristopher Jensen</a></h3>
+                <p>University College London</p>
             </div>
             <div class="person">
-                <img src="/api/placeholder/400/400" alt="Speaker 3">
-                <h3>Speaker Name</h3>
-                <p>Affiliation</p>
+                <img src="images/kevin.png" alt="Speaker 3">
+                <h3><a href="https://kevinjmiller.org/" target="_blank">Kevin Miller</a></h3>
+                <p>DeepMind</p>
+            </div>
+            <div class="person">
+                <img src="images/emily.jpg" alt="Speaker 3">
+                <h3><a href="https://emackev.github.io/" target="_blank">Emily Mackevicius</a></h3>
+                <p>Basis Research Institute</p>
+            </div>
+            <div class="person">
+                <img src="images/sat.png" alt="Speaker 3">
+                <h3><a href="https://satpreetsingh.github.io/" target="_blank">Satpreet Singh</a></h3>
+                <p>Harvard University</p>
+            </div>
+            <div class="person">
+                <img src="images/aran.png" alt="Speaker 3">
+                <h3><a href="https://anayebi.github.io/" target="_blank">Aran Nayebi</a></h3>
+                <p>Carnegie Mellon University</p>
+            </div>
+            <div class="person">
+                <img src="images/bing.png" alt="Speaker 3">
+                <h3><a href="https://bingbrunton.com/" target="_blank">Bing Brunton</a></h3>
+                <p>University of Washington</p>
+            </div>
+            <div class="person">
+                <img src="images/bence.jpeg" alt="Speaker 3">
+                <h3><a href="https://olveczkylab.oeb.harvard.edu/" target="_blank">Bence P. Ölveczky</a></h3>
+                <p>Harvard University</p>
+            </div>
+            <div class="person">
+                <img src="images/shreya.png" alt="Speaker 3">
+                <h3><a href="https://www.saxenalab.org/" target="_blank">Shreya Saxena</a></h3>
+                <p>Yale University</p>
             </div>
         </div>
     </section>
@@ -379,14 +412,19 @@
         <h2>Organizers</h2>
         <div class="grid">
             <div class="person">
-                <img src="/api/placeholder/400/400" alt="Organizer 1">
-                <h3>Organizer Name</h3>
-                <p>Affiliation</p>
+                <img src="images/ching.jpg" alt="Organizer 1">
+                <h3><a href="https://chingf.github.io/" target="_blank">Ching Fang</a></h3>
+                <p>Harvard University</p>
             </div>
             <div class="person">
-                <img src="/api/placeholder/400/400" alt="Organizer 2">
-                <h3>Organizer Name</h3>
-                <p>Affiliation</p>
+                <img src="images/sat.png" alt="Organizer 2">
+                <h3><a href="https://satpreetsingh.github.io/" target="_blank">Satpreet Singh</a></h3>
+                <p>Harvard University</p>
+            </div>
+            <div class="person">
+                <img src="images/gizem.png" alt="Organizer 2">
+                <h3><a href="https://gizemozd.github.io/" target="_blank">Pembe Gizem Özdil</a></h3>
+                <p>École polytechnique fédérale de Lausanne (EPFL)</p>
             </div>
         </div>
     </section>
