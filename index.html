@@ -4,230 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🤖 Agent-Based Models in Neuroscience</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: flex-end; /* Ensure nav content is right-aligned */
-            min-height: 60px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            margin: 0;
-            padding: 0 2rem;
-            width: auto; /* Remove the full width constraint */
-        }
-
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .banner {
-            position: relative;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            background-color: #000;
-        }
-
-        .banner::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* 30% opaque black overlay */
-            z-index: 1;
-        }
-
-        .banner img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: bottom; /* Aligns image to bottom */
-            opacity: 1; /* Changed from 0.7 since we're using overlay */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2; /* Increased z-index to appear above the overlay */
-        }
-
-        .banner h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        section {
-            padding: 4rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .schedule {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            overflow-x: auto;
-            max-width: 1000px; /* Add max-width to constrain table size */
-            margin: 0 auto; /* Center the schedule container */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds subtle shadow */
-        }
-
-        .schedule table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0; /* Add vertical margin inside the schedule container */
-        }
-
-        .schedule th, .schedule td {
-            padding: 1rem 1.5rem; /* Increased horizontal padding */
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .schedule th {
-            background-color: #333;
-            color: white;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(250px, 1fr)); /* Changed from auto-fit to 3 columns */
-            gap: 2rem;
-            margin-top: 2rem;
-            max-width: 1200px; /* Optional: adds a max-width to ensure consistent layout */
-            margin-left: auto; /* Optional: centers the grid */
-            margin-right: auto; /* Optional: centers the grid */
-        }
-
-        .person {
-            text-align: center;
-        }
-
-        .person img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-        }
-
-        .info {
-            background-color: #f9f9f9;
-            padding: 2rem;
-            border-radius: 8px;
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: flex-end;
-                gap: 1rem;
-            }
-
-            .banner h1 {
-                font-size: 1.5rem;
-            }
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            background: none;
-            border: none;
-            position: absolute;
-            right: 1rem;
-            top: 50%; /* Center vertically */
-            transform: translateY(-50%); /* Center vertically */
-            height: 40px; /* Fixed height */
-        }
-
-        .hamburger span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: #333;
-            margin: 5px 0;
-            transition: 0.4s;
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-
-            nav ul {
-                display: none;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: rgba(255, 255, 255, 0.9);
-                padding: 1rem;
-            }
-
-            nav ul.active {
-                display: block;
-            }
-
-            nav ul li {
-                margin: 1rem 0;
-                text-align: center;
-            }
-        }
-
-        .speaker-row {
-            background-color: #f0f2f5;  /* Light grayish-blue color */
-        }
-
-        /* Ensure hover effect for better interaction */
-        .speaker-row:hover {
-            background-color: #e5e8ed;  /* Slightly darker on hover */
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav>
@@ -241,118 +20,199 @@
             <li><a href="#schedule">Schedule</a></li>
             <li><a href="#speakers">Speakers</a></li>
             <li><a href="#organizers">Organizers</a></li>
+            <li><a href="#archive">Archive</a></li>
         </ul>
     </nav>
 
     <div class="banner">
-        <img src="images/mt_tremblant_small.jpg" alt="Workshop Banner">
+        <img src="images/cascais_wikimedia.jpg" alt="Workshop Banner">
         <div class="banner-content" style="color: #f5f5f5;">
-            <h1><b style="font-size: 1.5em;">COSYNE 2025 Workshop</b>
-                <br>on<br>Agent-Based Models in Neuroscience:<br>Complex Planning, Embodiment and Beyond</h1>
-            <p style="font-size: 1.5em;"><i>March 31, 2025</i></p>
+            <h1>
+                <b style="font-size: 1.5em;">COSYNE 2026 Workshop</b>
+                <br>on<br>
+                Agent-based Models in Neuroscience:<br>
+                Theory, Autonomy, Embodiment and Environment
+            </h1>
+            <p style="font-size: 1.5em;"><i>March 17, 2026 (Day 2)</i></p>
+            <p style="margin-top: 0.75rem; font-size: 1.0em;">
+                <span class="pill">2026 edition</span>
+            </p>
         </div>
     </div>
 
     <section id="abstract">
         <h2>Abstract</h2>
-        <p style="max-width: 90%; margin: 0 auto;">In this workshop, we bring together experimentalists and theorists to explore a nascent area in neuroscience: using agent-based models to simulate animal behavior and understand underlying neural computations. Agents are models that can sample from and interact with their environment to take actions. These models offer a powerful platform for neuroscientists to formulate and test hypotheses about how animals can perform complex, multi-step behaviors in naturalistic environments. Applications in this area have ranged from social behavior to foraging to dexterous motor control. As this approach gains traction, we face critical questions: How well can agents replicate complex animal behavior? When is embodiment crucial? To what extent do experimental data support the neural mechanisms suggested by these models?
+        <p class="narrow">
+            The brain is not a computer in a vat; it evolved to control a body interacting with a complex, dynamic environment.
+            To understand complex naturalistic behavior and its neural underpinnings, we must model this fundamental closed loop.
+            This workshop brings together a diverse group of experimentalists and theorists to explore a powerful, growing approach in neuroscience:
+            using agent-based models to link neural processes to the complex, multi-step behaviors they produce.
+            As these approaches proliferate, new questions arise: What levels of detail are necessary to capture animal behavior?
+            How should we balance abstraction versus realism in embodiment? To what extent do neural and behavioral data constrain or validate these models?
+            How can such models complement ongoing experiments and inspire new ones?
             <br><br>
-            To begin addressing these questions, we invite speakers with diverse perspectives on agent-based models in neuroscience. A prevailing paradigm is to train agents to solve difficult behavioral tasks commonly used in experimental neuroscience, such as foraging tasks that demand multi-step planning, decision-making, and memory. Typically trained through deep reinforcement learning, these models can explain aspects of animal behavior. The representations found in these models can also explain neural data phenomena found in animals and provide theories for the underlying neural computations
+            This year, we aim to highlight three complementary strands of work, across multiple scales of modeling:
+            The first uses <b>cognitively-oriented agents</b>, typically artificial neural networks trained with deep reinforcement learning,
+            to model complex naturalistic tasks like foraging, social interaction, and long-term planning. These models serve as powerful platforms
+            to test theories of memory, decision-making, and representation, offering compelling explanations for both animal behavior and neural dynamics.
             <br><br>
-            Another body of work centers around embodied agents, that is, the development of "digital twins" of animals (e.g., bees, flies, rodents, worms, and others) to recapitulate animal behavior in a physics simulator. Embodiment offers unprecedented observability of the interplay between neural circuits and musculoskeletal dynamics. The ethological relevance of motor movement also enforces a naturalistic constraint on the computations developed in these models. Many of these models have been important for both uncovering sensorimotor computations in the brain and testing/generating hypotheses.
+            The second paradigm centers on <b>embodied agents</b>, i.e. veritable "digital twins" of animals like flies, fish, and rodents.
+            By embodying neural circuits within physically realistic musculoskeletal models, this approach provides unprecedented insight
+            into the interplay of brain, body, and environment. It enforces morphological constraints on computation, helping to uncover the principles
+            of sensorimotor control, agility, and dexterity.
             <br><br>
-            By bringing researchers from fields such as systems neuroscience, NeuroAI, reinforcement learning, and biomechanics, we aim to catalyze interdisciplinary conversations to explore the potential of agent models to provide insights into brain function.
-            </p>
+            The third focuses on <b>agentic neuro-theory</b>, fostering dialogue between researchers developing abstract principles and those modeling detailed empirical phenomena.
+            We will explore emerging frontiers that expand the scope of agent-based modeling, such as learning dynamics, incorporating evolutionary pressures
+            through reward functions, internally generated goals, and the role of internal bodily signals (interoception) in shaping behavior.
+            <br><br>
+            Through invited talks and a multidisciplinary panel discussion, this workshop will bring together experimental and computational researchers
+            from systems neuroscience, theoretical neuroscience, NeuroAI, reinforcement learning, and biomechanics. We also hope to contrast this approach
+            with the data-driven "foundation model" approach, which is concurrently gaining traction. Our goal is to catalyze conversations across scales
+            and approaches, and to chart how agent-based modeling can advance our understanding of brain function, behavior, and cognition.
+        </p>
     </section>
 
-    <section id="schedule"></section>
-        <h2>Schedule</h2>
+    <section id="schedule">
+        <h2>Schedule (tentative)</h2>
+
+        <div class="info">
+            <p>
+                <b>Format:</b> 20–25 minute talks + one ~30 minute panel in each session.
+                <br>
+                <b>Note:</b> Talk titles are <b>TBA</b> until confirmed.
+            </p>
+        </div>
 
         <div class="schedule">
-            <h4>📣 Recordings from our workshop are available on <a href="https://youtube.com/playlist?list=PLAJi-27DFo6SeJEzV7e_de8NIHUap06iJ&si=fslXCaPB0Ioq0v_X" target="_blank">YouTube</a>.</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Time</th>
-                        <th>Title</th>
+                        <th>Session</th>
                         <th>Speaker</th>
+                        <th>Talk Title</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Morning block (>= 9:00) -->
                     <tr>
-                        <td>9:30 - 9:40 AM</td>
-                        <td>Introduction</td>
-                        <td>-</td>
+                        <td>9:30 – 9:40</td>
+                        <td>Morning</td>
+                        <td>Organizers</td>
+                        <td>Welcome &amp; overview</td>
+                    </tr>
+
+                    <tr class="speaker-row">
+                        <td>9:40 – 10:05</td>
+                        <td>Morning</td>
+                        <td><a href="https://barak.net.technion.ac.il/" target="_blank" rel="noopener">Omri Barak</a> (Technion)</td>
+                        <td>TBA (Theory / Tools)</td>
                     </tr>
                     <tr class="speaker-row">
-                        <td>9:40 - 10:05 AM</td>
-                        <td>Dopamine neurons encode a multidimensional probabilistic map of future reward</td>
-                        <td>Margarida Sousa, Champalimaud Foundation</td>
+                        <td>10:05 – 10:30</td>
+                        <td>Morning</td>
+                        <td><a href="https://as.nyu.edu/faculty/cristina-savin.html" target="_blank" rel="noopener">Cristina Savin</a> (NYU)</td>
+                        <td>TBA (Theory / Tools)</td>
                     </tr>
-                    <tr class="speaker-row">
-                        <td>10:05 - 10:30 AM</td>
-                        <td>Recurrent network models of planning in prefrontal cortex</td>
-                        <td>Kristopher Jensen, University College London</td>
-                    </tr>
+
+                    <!-- Coffee window: 10–11 -->
                     <tr>
-                        <td>10:30 - 10:45 AM</td>
-                        <td>Break</td>
+                        <td>10:30 – 10:45</td>
+                        <td>Morning</td>
                         <td>-</td>
+                        <td>Coffee break</td>
+                    </tr>
+
+                    <tr class="speaker-row">
+                        <td>10:45 – 11:10</td>
+                        <td>Morning</td>
+                        <td>
+                            <a href="https://www.lili.uni-osnabrueck.de/institut_fuer_germanistik/lehre/lehrende.html?config_id=048a134a20a6923c450191af9867826c&module=TemplatePersondetails&range_id=825b6af79a277e4749559e88541383e8&source=16027%25252527&target=16027&username=lilweber"
+                               target="_blank" rel="noopener">Lilian Weber</a> (Osnabrück)
+                        </td>
+                        <td>TBA (Theory / Tools)</td>
                     </tr>
                     <tr class="speaker-row">
-                        <td>10:45 - 11:10 AM</td>
-                        <td>Discovering Interpretable Cognitive Models from Behavior Data</td>
-                        <td>Kevin Miller, DeepMind</td>
+                        <td>11:10 – 11:35</td>
+                        <td>Morning</td>
+                        <td><a href="https://luddy.indiana.edu/contact/profile/?Justin_Wood=" target="_blank" rel="noopener">Justin Wood</a> (Indiana University)</td>
+                        <td>TBA (Experimental / Ecological)</td>
                     </tr>
                     <tr class="speaker-row">
-                        <td>11:10 - 11:35 AM</td>
-                        <td>Multi-agent foraging across real-world environments</td>
-                        <td>Emily Mackevicius, Basis Research Institute</td>
+                        <td>11:35 – 12:00</td>
+                        <td>Morning</td>
+                        <td><a href="https://www.kaolab.org/" target="_blank" rel="noopener">Jonathan Kao</a> (UCLA)</td>
+                        <td>TBA (Experimental / Ecological)</td>
                     </tr>
-                    <tr class="speaker-row">
-                        <td>11:35 AM - 12:00 PM</td>
-                        <td>Active Electrosensing and Emergent Communication in Artificial Fish Collectives</td>
-                        <td>Satpreet Singh, Harvard University</td>
-                    </tr>
+
                     <tr>
-                        <td>12:00 - 12:30 PM</td>
-                        <td>Morning Panel</td>
-                        <td>-</td>
+                        <td>12:00 – 12:30</td>
+                        <td>Morning</td>
+                        <td>Panel (incl. <a href="https://xaqlab.com/" target="_blank" rel="noopener">Xaq Pitkow</a>)</td>
+                        <td>Panel discussion (TBA)</td>
                     </tr>
-                    <tr class="speaker-row">
-                        <td>3:30 - 3:55 PM</td>
-                        <td>Why NeuroAI Needs NeuroAgents</td>
-                        <td>Aran Nayebi, Carnegie Mellon University</td>
-                    </tr>
-                    <tr class="speaker-row">
-                        <td>3:55 - 4:20 PM</td>
-                        <td>Connectome-constrained neuromechanical models of how flies move</td>
-                        <td>Bing Brunton, University of Washington</td>
-                    </tr>
+
+                    <!-- Lunch suggestion -->
                     <tr>
-                        <td>4:20 - 4:40 PM</td>
-                        <td>Break</td>
+                        <td>12:30 – 3:00</td>
+                        <td>Midday</td>
                         <td>-</td>
+                        <td>Lunch (on your own)</td>
+                    </tr>
+
+                    <!-- Afternoon block (restart ~3pm) -->
+                    <tr class="speaker-row">
+                        <td>3:00 – 3:25</td>
+                        <td>Afternoon</td>
+                        <td><a href="https://hannahchoi.math.gatech.edu/" target="_blank" rel="noopener">Hannah Choi</a> (Georgia Tech)</td>
+                        <td>TBA (Experimental / Ecological)</td>
                     </tr>
                     <tr class="speaker-row">
-                        <td>4:40 - 5:05 PM</td>
-                        <td>μSim: A goal-driven framework for elucidating the neural control of movement through musculoskeletal modeling</td>
-                        <td>Shreya Saxena, Yale University</td>
+                        <td>3:25 – 3:50</td>
+                        <td>Afternoon</td>
+                        <td><a href="https://fchampalimaud.org/research/groups/machens" target="_blank" rel="noopener">Caroline Haimerl</a> (Champalimaud)</td>
+                        <td>TBA (Experimental / Ecological)</td>
                     </tr>
                     <tr class="speaker-row">
-                        <td>5:05 - 5:30 PM</td>
-                        <td>Neuro-biomechanical Simulations in a Virtual Rodent</td>
-                        <td>Talmo Pereira, Salk Institute</td>
+                        <td>3:50 – 4:15</td>
+                        <td>Afternoon</td>
+                        <td><a href="https://www.janelia.org/people/srinivas-turaga" target="_blank" rel="noopener">Srinivas “Srini” Turaga</a> (Janelia)</td>
+                        <td>TBA (Embodied Agents)</td>
                     </tr>
+
+                    <!-- Coffee window: 4–5 -->
                     <tr>
-                        <td>5:30 - 5:45 PM</td>
-                        <td>Break</td>
+                        <td>4:15 – 4:30</td>
+                        <td>Afternoon</td>
                         <td>-</td>
+                        <td>Coffee break</td>
                     </tr>
+
+                    <tr class="speaker-row">
+                        <td>4:30 – 4:55</td>
+                        <td>Afternoon</td>
+                        <td><a href="https://www.naumannlab.org/" target="_blank" rel="noopener">Eva A. Naumann</a> (Duke)</td>
+                        <td>TBA (Embodied Agents)</td>
+                    </tr>
+                    <tr class="speaker-row">
+                        <td>4:55 – 5:20</td>
+                        <td>Afternoon</td>
+                        <td><a href="https://www.epfl.ch/labs/alexandermathis-lab/" target="_blank" rel="noopener">Alexander Mathis</a> (EPFL)</td>
+                        <td>TBA (Embodied Agents)</td>
+                    </tr>
+
                     <tr>
-                        <td>5:45 - 6:30 PM</td>
-                        <td>Afternoon Panel</td>
-                        <td>-</td>
+                        <td>5:20 – 5:50</td>
+                        <td>Afternoon</td>
+                        <td>Panel (incl. <a href="https://xaqlab.com/" target="_blank" rel="noopener">Xaq Pitkow</a> + speakers)</td>
+                        <td>Panel discussion (TBA)</td>
+                    </tr>
+
+                    <tr>
+                        <td>5:50 – 6:00</td>
+                        <td>Afternoon</td>
+                        <td>Organizers</td>
+                        <td>Closing remarks</td>
                     </tr>
                 </tbody>
             </table>
@@ -360,52 +220,69 @@
     </section>
 
     <section id="speakers">
-        <h2>Speakers</h2>
+        <h2>Speakers (confirmed)</h2>
         <div class="grid">
             <div class="person">
-                <img src="images/margarida.jpg" alt="Speaker 1">
-                <h3>Margarida Sousa</h3>
+                <img src="images/omri_barak.jpg" alt="Omri Barak">
+                <h3><a href="https://barak.net.technion.ac.il/" target="_blank" rel="noopener">Omri Barak</a></h3>
+                <p>Technion</p>
+            </div>
+            <div class="person">
+                <img src="images/cristina_savin.jpg" alt="Cristina Savin">
+                <h3><a href="https://as.nyu.edu/faculty/cristina-savin.html" target="_blank" rel="noopener">Cristina Savin</a></h3>
+                <p>New York University</p>
+            </div>
+            <div class="person">
+                <img src="images/lilian_weber.jpg" alt="Lilian Weber">
+                <h3>
+                    <a href="https://www.lili.uni-osnabrueck.de/institut_fuer_germanistik/lehre/lehrende.html?config_id=048a134a20a6923c450191af9867826c&module=TemplatePersondetails&range_id=825b6af79a277e4749559e88541383e8&source=16027%25252527&target=16027&username=lilweber"
+                       target="_blank" rel="noopener">Lilian Weber</a>
+                </h3>
+                <p>Osnabrück University</p>
+            </div>
+
+            <div class="person">
+                <img src="images/justin_wood.jpg" alt="Justin Wood">
+                <h3><a href="https://luddy.indiana.edu/contact/profile/?Justin_Wood=" target="_blank" rel="noopener">Justin Wood</a></h3>
+                <p>Indiana University</p>
+            </div>
+            <div class="person">
+                <img src="images/johnathan_kao.jpeg" alt="Jonathan Kao">
+                <h3><a href="https://www.kaolab.org/" target="_blank" rel="noopener">Jonathan Kao</a></h3>
+                <p>UCLA</p>
+            </div>
+            <div class="person">
+                <img src="images/hannah_choi.jpg" alt="Hannah Choi">
+                <h3><a href="https://hannahchoi.math.gatech.edu/" target="_blank" rel="noopener">Hannah Choi</a></h3>
+                <p>Georgia Tech</p>
+            </div>
+
+            <div class="person">
+                <img src="images/caroline_haimerl.jpeg" alt="Caroline Haimerl">
+                <h3><a href="https://fchampalimaud.org/research/groups/machens" target="_blank" rel="noopener">Caroline Haimerl</a></h3>
                 <p>Champalimaud Foundation</p>
             </div>
+
             <div class="person">
-                <img src="images/kristopher.png" alt="Speaker 2">
-                <h3><a href="https://krisjensen.github.io/" target="_blank">Kristopher Jensen</a></h3>
-                <p>University College London</p>
+                <img src="images/srini_turaga.webp" alt="Srini Turaga">
+                <h3><a href="https://www.janelia.org/people/srinivas-turaga" target="_blank" rel="noopener">Srini Turaga</a></h3>
+                <p>HHMI Janelia</p>
             </div>
             <div class="person">
-                <img src="images/kevin.png" alt="Speaker 3">
-                <h3><a href="https://kevinjmiller.org/" target="_blank">Kevin Miller</a></h3>
-                <p>DeepMind</p>
+                <img src="images/eva_naumann.jpg" alt="Eva Naumann">
+                <h3><a href="https://www.naumannlab.org/" target="_blank" rel="noopener">Eva A. Naumann</a></h3>
+                <p>Duke University</p>
             </div>
             <div class="person">
-                <img src="images/emily.jpg" alt="Speaker 3">
-                <h3><a href="https://emackev.github.io/" target="_blank">Emily Mackevicius</a></h3>
-                <p>Basis Research Institute</p>
+                <img src="images/alexander_mathis.jpeg" alt="Alexander Mathis">
+                <h3><a href="https://www.epfl.ch/labs/alexandermathis-lab/" target="_blank" rel="noopener">Alexander Mathis</a></h3>
+                <p>EPFL</p>
             </div>
+
             <div class="person">
-                <img src="images/sat.png" alt="Speaker 3">
-                <h3><a href="https://satpreetsingh.github.io/" target="_blank">Satpreet Singh</a></h3>
-                <p>Harvard University</p>
-            </div>
-            <div class="person">
-                <img src="images/aran.png" alt="Speaker 3">
-                <h3><a href="https://anayebi.github.io/" target="_blank">Aran Nayebi</a></h3>
-                <p>Carnegie Mellon University</p>
-            </div>
-            <div class="person">
-                <img src="images/bing.png" alt="Speaker 3">
-                <h3><a href="https://bingbrunton.com/" target="_blank">Bing Brunton</a></h3>
-                <p>University of Washington</p>
-            </div>
-            <div class="person">
-                <img src="images/shreya.png" alt="Speaker 3">
-                <h3><a href="https://www.saxenalab.org/" target="_blank">Shreya Saxena</a></h3>
-                <p>Yale University</p>
-            </div>
-            <div class="person">
-                <img src="images/talmo.png" alt="Speaker 3">
-                <h3><a href="https://talmolab.org/members/talmo-pereira.html" target="_blank">Talmo Pereira</a></h3>
-                <p>Salk Institute</p>
+                <img src="images/xaq_pitkow.webp" alt="Xaq Pitkow">
+                <h3><a href="https://xaqlab.com/" target="_blank" rel="noopener">Xaq Pitkow</a></h3>
+                <p>CMU (panelist)</p>
             </div>
         </div>
     </section>
@@ -414,20 +291,39 @@
         <h2>Organizers</h2>
         <div class="grid">
             <div class="person">
-                <img src="images/ching.jpg" alt="Organizer 1">
-                <h3><a href="https://chingf.github.io/" target="_blank">Ching Fang</a></h3>
+                <img src="images/sat2.jpg" alt="Satpreet Singh">
+                <h3>
+                    <a href="https://satpreetsingh.github.io/" target="_blank" rel="noopener">Satpreet Singh</a>
+                    <span class="subtle"> • <a href="https://x.com/tweetsatpreet" target="_blank" rel="noopener">X</a></span>
+                </h3>
                 <p>Harvard University</p>
             </div>
             <div class="person">
-                <img src="images/sat.png" alt="Organizer 2">
-                <h3><a href="https://satpreetsingh.github.io/" target="_blank">Satpreet Singh</a></h3>
-                <p>Harvard University</p>
+                <img src="images/aran.jpg" alt="Aran Nayebi">
+                <h3>
+                    <a href="https://anayebi.github.io" target="_blank" rel="noopener">Aran Nayebi</a>
+                    <span class="subtle"> • <a href="https://x.com/aran_nayebi" target="_blank" rel="noopener">X</a></span>
+                </h3>
+                <p>Carnegie Mellon University</p>
             </div>
             <div class="person">
-                <img src="images/gizem.png" alt="Organizer 2">
-                <h3><a href="https://gizemozd.github.io/" target="_blank">Pembe Gizem Özdil</a></h3>
-                <p>École polytechnique fédérale de Lausanne (EPFL)</p>
+                <img src="images/elliott.jpg" alt="Elliott Abe">
+                <h3>
+                    <a href="https://escience.washington.edu/member/elliott-abe/" target="_blank" rel="noopener">Elliott Abe</a>
+                    <span class="subtle"> • <a href="https://x.com/elliott_abe" target="_blank" rel="noopener">X</a></span>
+                </h3>
+                <p>University of Washington</p>
             </div>
+        </div>
+    </section>
+
+    <section id="archive">
+        <h2>Past Editions</h2>
+        <div class="info">
+            <p>
+                Looking for the previous year’s workshop page or videos?
+                <a href="./2025/index.html">View our COSYNE 2025 workshop website</a>.
+            </p>
         </div>
     </section>
 
@@ -438,5 +334,4 @@
         }
     </script>
 </body>
-
 </html>
